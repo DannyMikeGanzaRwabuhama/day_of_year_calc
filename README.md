@@ -1,73 +1,42 @@
-# React + TypeScript + Vite
+# Day of Year Calculator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React application that calculates which day of the year a given date corresponds to (1-365 for regular years, 1-366 for leap years).
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Interactive Date Selection**: Choose dates using month/year dropdowns, navigation buttons, or a calendar interface
+- **Instant Calculation**: Results appear immediately after selecting a date
+- **Detailed Breakdown**: See step-by-step calculation showing days from each month
+- **Leap Year Detection**: Automatically identifies and handles leap years
+- **User-Friendly Interface**: Built with shadcn/ui components for a modern, responsive design
 
-## React Compiler
+## How It Works
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The calculator determines the day number by:
 
-## Expanding the ESLint configuration
+1. **Checking for leap year**: Uses the rule that a year is a leap year if divisible by 4, except centuries (divisible by 100) unless also divisible by 400
+2. **Summing complete months**: Adds up all days from months before the selected month
+3. **Adding current day**: Includes the day number from the selected month
+4. **Displaying the result**: Shows the total with a detailed breakdown
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Example
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+**Date**: March 15, 2024
+- January: 31 days
+- February: 29 days (2024 is a leap year)
+- March (current): 15 days
+- **Total**: Day 75 of the year
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Usage
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. Select a year from the dropdown (range: 1925-2125)
+2. Choose a month using the dropdown or navigation arrows (← →)
+3. Click a day on the calendar
+4. View the calculated day number and breakdown on the right
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Technologies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- React
+- shadcn/ui components
+- Tailwind CSS
+- Lucide React icons
